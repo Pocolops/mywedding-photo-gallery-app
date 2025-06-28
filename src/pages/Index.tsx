@@ -66,7 +66,7 @@ const Index = () => {
 
         {/* Names Text - animates from far left to extremely far left position */}
         <div 
-          className={`absolute top-[60%] -left-32 text-[0.8rem] tracking-[0.3em] text-gray-700 font-normal uppercase transition-all duration-[3000ms] ease-[cubic-bezier(0.25,0.46,0.45,0.94)] ${
+          className={`absolute top-[65%] -left-32 text-[0.8rem] tracking-[0.3em] text-gray-700 font-normal uppercase transition-all duration-[3000ms] ease-[cubic-bezier(0.25,0.46,0.45,0.94)] ${
             animationPhase >= 2
               ? '-translate-x-8 opacity-100 blur-0' 
               : '-translate-x-96 opacity-0 blur-sm'
