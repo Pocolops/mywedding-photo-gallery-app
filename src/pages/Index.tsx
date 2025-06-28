@@ -20,33 +20,52 @@ const Index = () => {
       <div className="flex flex-col items-center justify-center flex-1 space-y-8">
         {/* Stylized DS Logo */}
         <div 
-          className={`text-9xl md:text-[12rem] font-bold text-gray-800 leading-none transform transition-all duration-1000 ease-out ${
-            isLoaded 
-              ? 'translate-y-0 opacity-100 scale-100' 
-              : 'translate-y-12 opacity-0 scale-95'
-          }`}
+          className="text-9xl md:text-[12rem] font-bold text-gray-800 leading-none relative"
           style={{ 
-            fontFamily: 'serif',
+            fontFamily: "'Giaza Senthil', serif",
             letterSpacing: '-0.1em'
           }}
         >
-          <span className="inline-block transform transition-all duration-1200 delay-200">D</span>
+          {/* D animates from top */}
           <span 
-            className="inline-block transform transition-all duration-1200 delay-400"
-            style={{ marginLeft: '-0.2em' }}
+            className={`inline-block transform transition-all duration-1200 ease-out ${
+              isLoaded 
+                ? 'translate-y-0 opacity-100' 
+                : '-translate-y-32 opacity-0'
+            }`}
+            style={{ transitionDelay: '200ms' }}
+          >
+            D
+          </span>
+          
+          {/* S animates from bottom */}
+          <span 
+            className={`inline-block transform transition-all duration-1200 ease-out ${
+              isLoaded 
+                ? 'translate-y-0 opacity-100' 
+                : 'translate-y-32 opacity-0'
+            }`}
+            style={{ 
+              marginLeft: '-0.2em',
+              transitionDelay: '400ms'
+            }}
           >
             S
           </span>
         </div>
 
-        {/* Names Text */}
+        {/* Names Text - animates from left */}
         <div 
-          className={`text-sm md:text-base tracking-[0.3em] text-gray-600 font-light uppercase transform transition-all duration-800 delay-600 ${
+          className={`text-sm md:text-base tracking-[0.3em] text-gray-600 font-light uppercase transform transition-all duration-1000 ease-out ${
             isLoaded 
-              ? 'translate-y-0 opacity-100' 
-              : 'translate-y-8 opacity-0'
+              ? 'translate-x-0 opacity-100' 
+              : '-translate-x-16 opacity-0'
           }`}
-          style={{ letterSpacing: '0.3em' }}
+          style={{ 
+            letterSpacing: '0.3em',
+            fontFamily: "'Giaza Senthil', serif",
+            transitionDelay: '800ms'
+          }}
         >
           DANIAL & SYAHIRAH
         </div>
@@ -54,7 +73,7 @@ const Index = () => {
 
       {/* Start Button */}
       <div 
-        className={`pb-16 transform transition-all duration-800 delay-1000 ${
+        className={`pb-16 transform transition-all duration-800 delay-1200 ${
           isLoaded 
             ? 'translate-y-0 opacity-100' 
             : 'translate-y-8 opacity-0'
@@ -62,6 +81,7 @@ const Index = () => {
       >
         <Button 
           className="bg-gray-800 hover:bg-gray-700 text-white px-12 py-4 rounded-full text-sm tracking-wider uppercase font-light transition-all duration-300 hover:scale-105 shadow-lg"
+          style={{ fontFamily: "'Giaza Senthil', serif" }}
           onClick={() => {
             // Add your navigation logic here
             console.log('Start clicked - navigate to main site');
