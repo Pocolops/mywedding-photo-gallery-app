@@ -30,7 +30,7 @@ const Index = () => {
               transitionDelay: '300ms'
             }}
           >
-            {/* Sophisticated DS Monogram */}
+            {/* Clean DS Monogram */}
             <svg 
               width="200" 
               height="280" 
@@ -45,20 +45,11 @@ const Index = () => {
                 className="opacity-95"
               />
               
-              {/* S Letter - Intertwined and flowing */}
+              {/* S Letter - Normal, clean design */}
               <path 
-                d="M110 60 C110 60 140 55 170 70 C185 78 195 90 195 110 C195 125 190 135 180 142 C190 150 195 162 195 180 C195 205 180 220 165 228 C140 240 110 240 110 240 C110 240 95 235 95 220 C95 220 110 215 125 215 C140 215 155 210 165 202 C165 195 165 188 155 185 L130 175 C115 172 100 162 100 145 C100 130 108 120 120 115 C108 108 100 98 100 80 C100 60 115 45 130 38 C145 30 160 30 170 38 C170 50 160 55 150 55 C135 55 125 60 110 60 Z" 
+                d="M120 60 C105 60 90 70 90 85 C90 95 95 105 110 110 L140 120 C155 125 165 135 165 150 C165 170 150 180 130 180 C115 180 100 175 100 160 L70 160 C70 190 95 210 130 210 C165 210 195 190 195 150 C195 130 185 115 165 110 L135 100 C125 97 115 92 115 85 C115 75 125 70 135 70 C145 70 155 75 155 85 L185 85 C185 65 165 40 130 40 C125 45 122.5 52.5 120 60 Z" 
                 fill="currentColor"
                 className="opacity-95"
-              />
-              
-              {/* Elegant connecting flourish */}
-              <circle 
-                cx="120" 
-                cy="200" 
-                r="12" 
-                fill="currentColor"
-                className="opacity-90"
               />
             </svg>
           </div>
