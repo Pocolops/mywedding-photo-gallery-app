@@ -3,68 +3,75 @@ import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 
 const Index = () => {
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [animationPhase, setAnimationPhase] = useState(0);
 
   useEffect(() => {
-    // Trigger animations after component mounts
-    const timer = setTimeout(() => {
-      setIsLoaded(true);
-    }, 100);
+    // Phase 0: Initial state (D at top, S at bottom, hidden text)
+    // Phase 1: D and S animate to center and combine (after 500ms)
+    // Phase 2: Names animate in from side (after 2000ms)
+    
+    const timer1 = setTimeout(() => {
+      setAnimationPhase(1);
+    }, 500);
 
-    return () => clearTimeout(timer);
+    const timer2 = setTimeout(() => {
+      setAnimationPhase(2);
+    }, 2000);
+
+    return () => {
+      clearTimeout(timer1);
+      clearTimeout(timer2);
+    };
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 relative overflow-hidden">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-200 relative overflow-hidden">
       {/* Main Content Container */}
-      <div className="flex flex-col items-center justify-center flex-1 space-y-6">
-        {/* Elegant DS Monogram */}
+      <div className="flex flex-col items-center justify-center flex-1 relative">
+        
+        {/* DS Letters Container */}
         <div className="relative">
-          <div 
-            className={`relative transform transition-all duration-3000 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] ${
-              isLoaded 
-                ? 'translate-y-0 opacity-100 scale-100' 
-                : 'translate-y-0 opacity-0 scale-90'
-            }`}
-            style={{ 
-              transitionDelay: '300ms'
-            }}
+          <svg 
+            width="300" 
+            height="400" 
+            viewBox="0 0 300 400" 
+            className="text-gray-900"
           >
-            {/* Clean DS Monogram */}
-            <svg 
-              width="200" 
-              height="280" 
-              viewBox="0 0 200 280" 
-              className="text-gray-900"
-              style={{ filter: 'drop-shadow(0 2px 8px rgba(0,0,0,0.1))' }}
-            >
-              {/* D Letter - Left side */}
-              <path 
-                d="M20 40 L20 240 L80 240 C130 240 160 210 160 160 L160 120 C160 70 130 40 80 40 Z M50 70 L80 70 C110 70 130 90 130 120 L130 160 C130 190 110 210 80 210 L50 210 Z" 
-                fill="currentColor"
-                className="opacity-95"
-              />
-              
-              {/* S Letter - Normal, clean design */}
-              <path 
-                d="M120 60 C105 60 90 70 90 85 C90 95 95 105 110 110 L140 120 C155 125 165 135 165 150 C165 170 150 180 130 180 C115 180 100 175 100 160 L70 160 C70 190 95 210 130 210 C165 210 195 190 195 150 C195 130 185 115 165 110 L135 100 C125 97 115 92 115 85 C115 75 125 70 135 70 C145 70 155 75 155 85 L185 85 C185 65 165 40 130 40 C125 45 122.5 52.5 120 60 Z" 
-                fill="currentColor"
-                className="opacity-95"
-              />
-            </svg>
-          </div>
+            {/* D Letter */}
+            <path 
+              d="M30 60 L30 260 L110 260 C170 260 210 220 210 160 L210 160 C210 100 170 60 110 60 Z M70 100 L110 100 C140 100 170 130 170 160 L170 160 C170 190 140 220 110 220 L70 220 Z"
+              fill="currentColor"
+              className={`transition-all duration-2000 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] ${
+                animationPhase === 0 
+                  ? 'translate-y-[-200px] opacity-70' 
+                  : 'translate-y-0 opacity-100'
+              }`}
+            />
+            
+            {/* S Letter - Sophisticated curved S */}
+            <path 
+              d="M150 200 C150 200 190 195 230 215 C250 225 265 245 265 270 C265 290 255 305 240 315 C255 325 265 340 265 365 C265 395 245 415 225 425 C190 440 150 440 150 440 C150 440 130 435 130 415 C130 415 150 410 170 410 C190 410 210 405 225 395 C225 385 225 375 210 370 L175 355 C155 350 135 335 135 315 C135 295 145 280 160 270 C145 260 135 245 135 220 C135 195 155 175 175 165 C195 155 215 155 230 165 C230 180 215 185 200 185 C180 185 165 190 150 200 Z"
+              fill="currentColor"
+              className={`transition-all duration-2000 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] ${
+                animationPhase === 0 
+                  ? 'translate-y-[200px] opacity-70' 
+                  : 'translate-y-0 opacity-100'
+              }`}
+            />
+          </svg>
         </div>
 
-        {/* Names Text - slides in from left */}
+        {/* Names Text - positioned under D letter */}
         <div 
-          className={`text-[0.65rem] tracking-[0.25em] text-gray-600 font-normal uppercase transform transition-all duration-2500 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] ${
-            isLoaded 
+          className={`absolute top-[60%] left-[35%] text-[0.6rem] tracking-[0.2em] text-gray-700 font-normal uppercase transform transition-all duration-1500 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] ${
+            animationPhase >= 2
               ? 'translate-x-0 opacity-100 blur-0' 
               : '-translate-x-full opacity-0 blur-sm'
           }`}
           style={{ 
-            letterSpacing: '0.25em',
-            transitionDelay: '800ms'
+            letterSpacing: '0.2em',
+            transitionDelay: animationPhase >= 2 ? '0ms' : '0ms',
+            lineHeight: '1.4'
           }}
         >
           DANIAL &<br />SYAHIRAH
@@ -73,17 +80,17 @@ const Index = () => {
 
       {/* Start Button */}
       <div 
-        className={`pb-20 transform transition-all duration-2000 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] ${
-          isLoaded 
+        className={`pb-16 transform transition-all duration-1500 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] ${
+          animationPhase >= 2
             ? 'translate-y-0 opacity-100 scale-100' 
-            : 'translate-y-12 opacity-0 scale-95'
+            : 'translate-y-8 opacity-60 scale-95'
         }`}
-        style={{ transitionDelay: '1200ms' }}
+        style={{ transitionDelay: animationPhase >= 2 ? '300ms' : '0ms' }}
       >
         <Button 
-          className="bg-gray-900 hover:bg-gray-800 text-white px-16 py-3 rounded-full text-[0.7rem] tracking-[0.3em] uppercase font-normal transition-all duration-300 hover:scale-105 hover:shadow-lg shadow-md"
+          className="bg-gray-900 hover:bg-gray-800 text-white px-20 py-4 rounded-full text-[0.65rem] tracking-[0.4em] uppercase font-normal transition-all duration-300 hover:scale-105 hover:shadow-lg shadow-md"
           style={{ 
-            letterSpacing: '0.3em'
+            letterSpacing: '0.4em'
           }}
           onClick={() => {
             console.log('Start clicked - navigate to main site');
