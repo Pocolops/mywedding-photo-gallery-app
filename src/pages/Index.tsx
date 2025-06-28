@@ -33,14 +33,14 @@ const Index = () => {
         <div className="relative flex items-center justify-center">
           {/* D Letter */}
           <div 
-            className={`text-[12rem] font-bold text-gray-900 leading-none transition-all duration-2000 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] ${
+            className={`text-[16rem] font-bold text-gray-900 leading-none transition-all duration-2000 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] ${
               animationPhase === 0 
-                ? '-translate-y-[400px] opacity-70' 
+                ? '-translate-y-[500px] opacity-70' 
                 : 'translate-y-0 opacity-100'
             }`}
             style={{ 
               fontFamily: 'Georgia, "Times New Roman", serif',
-              marginRight: '-0.1em'
+              marginRight: '-0.5em'
             }}
           >
             D
@@ -48,14 +48,14 @@ const Index = () => {
           
           {/* S Letter */}
           <div 
-            className={`text-[12rem] font-bold text-gray-900 leading-none transition-all duration-2000 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] ${
+            className={`text-[16rem] font-bold text-gray-900 leading-none transition-all duration-2000 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] ${
               animationPhase === 0 
-                ? 'translate-y-[400px] opacity-70' 
+                ? 'translate-y-[500px] opacity-70' 
                 : 'translate-y-0 opacity-100'
             }`}
             style={{ 
               fontFamily: 'Georgia, "Times New Roman", serif',
-              marginLeft: '-0.1em'
+              marginLeft: '-0.5em'
             }}
           >
             S
@@ -64,7 +64,7 @@ const Index = () => {
 
         {/* Names Text - positioned under D letter */}
         <div 
-          className={`absolute top-[65%] left-[42%] text-[0.8rem] tracking-[0.3em] text-gray-700 font-normal uppercase transform transition-all duration-1500 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] ${
+          className={`absolute top-[70%] left-[35%] text-[0.8rem] tracking-[0.3em] text-gray-700 font-normal uppercase transform transition-all duration-1500 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] ${
             animationPhase >= 2
               ? 'translate-x-0 opacity-100 blur-0' 
               : '-translate-x-full opacity-0 blur-sm'
