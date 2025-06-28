@@ -7,7 +7,7 @@ const Index = () => {
 
   useEffect(() => {
     // Phase 0: Initial state (D at top, S at bottom, hidden text)
-    // Phase 1: D and S animate to center and combine (after 500ms)
+    // Phase 1: D and S animate to center and overlap (after 500ms)
     // Phase 2: Names animate in from side (after 2000ms)
     
     const timer1 = setTimeout(() => {
@@ -33,14 +33,15 @@ const Index = () => {
         <div className="relative flex items-center justify-center">
           {/* D Letter */}
           <div 
-            className={`text-[16rem] font-bold text-gray-900 leading-none transition-all duration-2000 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] ${
+            className={`text-[20rem] font-bold text-gray-900 leading-none transition-all duration-2000 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] absolute z-10 ${
               animationPhase === 0 
                 ? '-translate-y-[500px] opacity-70' 
                 : 'translate-y-0 opacity-100'
             }`}
             style={{ 
               fontFamily: 'Georgia, "Times New Roman", serif',
-              marginRight: '0.1em'
+              left: '-0.3em',
+              top: '-0.1em'
             }}
           >
             D
@@ -48,26 +49,27 @@ const Index = () => {
           
           {/* S Letter */}
           <div 
-            className={`text-[16rem] font-bold text-gray-900 leading-none transition-all duration-2000 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] ${
+            className={`text-[20rem] font-bold text-gray-900 leading-none transition-all duration-2000 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] absolute z-0 ${
               animationPhase === 0 
                 ? 'translate-y-[500px] opacity-70' 
                 : 'translate-y-0 opacity-100'
             }`}
             style={{ 
               fontFamily: 'Georgia, "Times New Roman", serif',
-              marginLeft: '0.1em'
+              right: '-0.3em',
+              top: '0.1em'
             }}
           >
             S
           </div>
         </div>
 
-        {/* Names Text - positioned under the D and S */}
+        {/* Names Text - positioned under the D, animating from left */}
         <div 
-          className={`absolute top-[75%] left-[50%] transform -translate-x-1/2 text-[0.8rem] tracking-[0.3em] text-gray-700 font-normal uppercase transition-all duration-1500 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] ${
+          className={`absolute top-[75%] left-[35%] text-[0.8rem] tracking-[0.3em] text-gray-700 font-normal uppercase transition-all duration-1500 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] ${
             animationPhase >= 2
-              ? 'translate-y-0 opacity-100 blur-0' 
-              : 'translate-y-4 opacity-0 blur-sm'
+              ? 'translate-x-0 opacity-100 blur-0' 
+              : '-translate-x-8 opacity-0 blur-sm'
           }`}
           style={{ 
             letterSpacing: '0.3em',
