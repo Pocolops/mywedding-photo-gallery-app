@@ -33,7 +33,7 @@ const Index = () => {
         <div className="relative flex items-center justify-center">
           {/* D Letter */}
           <div 
-            className={`text-[18rem] font-bold text-gray-900 leading-none transition-all duration-3000 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] absolute z-10 ${
+            className={`text-[18rem] font-bold text-gray-900 leading-none transition-all duration-[3000ms] ease-[cubic-bezier(0.25,0.46,0.45,0.94)] absolute z-10 ${
               animationPhase === 0 
                 ? '-translate-y-[500px] opacity-70' 
                 : animationPhase === 1
@@ -41,7 +41,7 @@ const Index = () => {
                 : '-translate-x-8 -translate-y-4 opacity-100'
             }`}
             style={{ 
-              fontFamily: 'Georgia, "Times New Roman", serif'
+              fontFamily: '"Giaza Senthil", Georgia, "Times New Roman", serif'
             }}
           >
             D
@@ -49,7 +49,7 @@ const Index = () => {
           
           {/* S Letter */}
           <div 
-            className={`text-[18rem] font-bold text-gray-900 leading-none transition-all duration-3000 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] absolute z-0 ${
+            className={`text-[18rem] font-bold text-gray-900 leading-none transition-all duration-[3000ms] ease-[cubic-bezier(0.25,0.46,0.45,0.94)] absolute z-0 ${
               animationPhase === 0 
                 ? 'translate-y-[500px] opacity-70' 
                 : animationPhase === 1
@@ -57,7 +57,7 @@ const Index = () => {
                 : 'translate-x-8 translate-y-12 opacity-100'
             }`}
             style={{ 
-              fontFamily: 'Georgia, "Times New Roman", serif'
+              fontFamily: '"Giaza Senthil", Georgia, "Times New Roman", serif'
             }}
           >
             S
