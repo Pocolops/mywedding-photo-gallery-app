@@ -1,9 +1,11 @@
 
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
+import { useNavigate } from 'react-router-dom';
 
 const Index = () => {
   const [animationPhase, setAnimationPhase] = useState(0);
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Phase 0: Initial state (D at top, S at bottom, hidden text)
@@ -23,6 +25,10 @@ const Index = () => {
       clearTimeout(timer2);
     };
   }, []);
+
+  const handleStartClick = () => {
+    navigate('/menu');
+  };
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gray-200 relative overflow-hidden font-serif">
@@ -66,7 +72,7 @@ const Index = () => {
 
         {/* Names Text - animates from far left to extremely far left position */}
         <div 
-          className={`absolute top-[65%] -left-32 text-[0.8rem] tracking-[0.3em] text-gray-700 font-normal uppercase transition-all duration-[3000ms] ease-[cubic-bezier(0.25,0.46,0.45,0.94)] ${
+          className={`absolute top-[65%] -left-32 text-[0.9rem] tracking-[0.3em] text-gray-700 font-normal uppercase transition-all duration-[3000ms] ease-[cubic-bezier(0.25,0.46,0.45,0.94)] ${
             animationPhase >= 2
               ? '-translate-x-8 opacity-100 blur-0' 
               : '-translate-x-96 opacity-0 blur-sm'
@@ -96,9 +102,7 @@ const Index = () => {
             letterSpacing: '0.4em',
             fontFamily: 'Georgia, "Times New Roman", serif'
           }}
-          onClick={() => {
-            console.log('Start clicked - navigate to main site');
-          }}
+          onClick={handleStartClick}
         >
           START
         </Button>
