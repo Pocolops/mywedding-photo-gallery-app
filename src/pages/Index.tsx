@@ -10,7 +10,7 @@ const Index = () => {
   useEffect(() => {
     // Phase 0: Initial state (D at top, S at bottom, hidden text)
     // Phase 1: D and S animate to center and overlap, text appears simultaneously (after 800ms)
-    // Phase 2: Button appears (after 2500ms)
+    // Phase 2: Button appears (after 2000ms)
     
     const timer1 = setTimeout(() => {
       setAnimationPhase(1);
@@ -18,7 +18,7 @@ const Index = () => {
 
     const timer2 = setTimeout(() => {
       setAnimationPhase(2);
-    }, 2500);
+    }, 2000);
 
     return () => {
       clearTimeout(timer1);
@@ -85,12 +85,11 @@ const Index = () => {
 
       {/* Start Button */}
       <div 
-        className={`pb-16 transform transition-all duration-[1500ms] ease-[cubic-bezier(0.23,1,0.32,1)] ${
+        className={`pb-16 transform transition-all duration-[1200ms] ease-[cubic-bezier(0.23,1,0.32,1)] ${
           animationPhase >= 2
             ? 'translate-y-0 opacity-100 scale-100' 
-            : 'translate-y-8 opacity-60 scale-95'
+            : 'translate-y-8 opacity-0 scale-95'
         }`}
-        style={{ transitionDelay: animationPhase >= 2 ? '200ms' : '0ms' }}
       >
         <Button 
           className="bg-gray-900 hover:bg-gray-800 text-white px-20 py-4 rounded-full text-[0.7rem] tracking-[0.4em] uppercase font-normal transition-all duration-300 hover:scale-105 hover:shadow-lg shadow-md"
