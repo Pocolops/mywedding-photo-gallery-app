@@ -40,7 +40,7 @@ const Index = () => {
             }`}
             style={{ 
               fontFamily: 'Georgia, "Times New Roman", serif',
-              marginRight: '-0.5em'
+              marginRight: '0.1em'
             }}
           >
             D
@@ -55,19 +55,19 @@ const Index = () => {
             }`}
             style={{ 
               fontFamily: 'Georgia, "Times New Roman", serif',
-              marginLeft: '-0.5em'
+              marginLeft: '0.1em'
             }}
           >
             S
           </div>
         </div>
 
-        {/* Names Text - positioned under D letter */}
+        {/* Names Text - positioned under the D and S */}
         <div 
-          className={`absolute top-[70%] left-[35%] text-[0.8rem] tracking-[0.3em] text-gray-700 font-normal uppercase transform transition-all duration-1500 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] ${
+          className={`absolute top-[75%] left-[50%] transform -translate-x-1/2 text-[0.8rem] tracking-[0.3em] text-gray-700 font-normal uppercase transition-all duration-1500 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] ${
             animationPhase >= 2
-              ? 'translate-x-0 opacity-100 blur-0' 
-              : '-translate-x-full opacity-0 blur-sm'
+              ? 'translate-y-0 opacity-100 blur-0' 
+              : 'translate-y-4 opacity-0 blur-sm'
           }`}
           style={{ 
             letterSpacing: '0.3em',
