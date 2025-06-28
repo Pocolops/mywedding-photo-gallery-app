@@ -9,16 +9,16 @@ const Index = () => {
 
   useEffect(() => {
     // Phase 0: Initial state (D at top, S at bottom, hidden text)
-    // Phase 1: D and S animate to center and overlap (after 1000ms)
-    // Phase 2: Names animate in from side (after 3500ms)
+    // Phase 1: D and S animate to center and overlap, text appears simultaneously (after 800ms)
+    // Phase 2: Button appears (after 2500ms)
     
     const timer1 = setTimeout(() => {
       setAnimationPhase(1);
-    }, 1000);
+    }, 800);
 
     const timer2 = setTimeout(() => {
       setAnimationPhase(2);
-    }, 3500);
+    }, 2500);
 
     return () => {
       clearTimeout(timer1);
@@ -39,11 +39,9 @@ const Index = () => {
         <div className="relative flex items-center justify-center">
           {/* D Letter */}
           <div 
-            className={`text-[18rem] font-bold text-gray-900 leading-none transition-all duration-[2500ms] ease-[cubic-bezier(0.23,1,0.32,1)] absolute z-10 ${
+            className={`text-[18rem] font-bold text-gray-900 leading-none transition-all duration-[2000ms] ease-[cubic-bezier(0.23,1,0.32,1)] absolute z-10 ${
               animationPhase === 0 
                 ? '-translate-y-[500px] opacity-60' 
-                : animationPhase === 1
-                ? '-translate-x-12 -translate-y-4 opacity-100'
                 : '-translate-x-12 -translate-y-4 opacity-100'
             }`}
             style={{ 
@@ -55,11 +53,9 @@ const Index = () => {
           
           {/* S Letter */}
           <div 
-            className={`text-[18rem] font-bold text-gray-900 leading-none transition-all duration-[2500ms] ease-[cubic-bezier(0.23,1,0.32,1)] absolute z-0 ${
+            className={`text-[18rem] font-bold text-gray-900 leading-none transition-all duration-[2000ms] ease-[cubic-bezier(0.23,1,0.32,1)] absolute z-0 ${
               animationPhase === 0 
                 ? 'translate-y-[500px] opacity-60' 
-                : animationPhase === 1
-                ? 'translate-x-16 translate-y-24 opacity-100'
                 : 'translate-x-16 translate-y-24 opacity-100'
             }`}
             style={{ 
@@ -70,18 +66,17 @@ const Index = () => {
           </div>
         </div>
 
-        {/* Names Text - animates from far left to extremely far left position */}
+        {/* Names Text - animates simultaneously with letters */}
         <div 
           className={`absolute top-[65%] -left-32 text-[0.9rem] tracking-[0.3em] text-gray-700 font-normal uppercase transition-all duration-[2000ms] ease-[cubic-bezier(0.23,1,0.32,1)] ${
-            animationPhase >= 2
+            animationPhase >= 1
               ? '-translate-x-8 opacity-100 blur-0' 
               : '-translate-x-96 opacity-0 blur-sm'
           }`}
           style={{ 
             letterSpacing: '0.3em',
             lineHeight: '1.6',
-            fontFamily: 'Georgia, "Times New Roman", serif',
-            transitionDelay: animationPhase >= 2 ? '300ms' : '0ms'
+            fontFamily: 'Georgia, "Times New Roman", serif'
           }}
         >
           DANIAL &<br />SYAHIRAH
@@ -95,7 +90,7 @@ const Index = () => {
             ? 'translate-y-0 opacity-100 scale-100' 
             : 'translate-y-8 opacity-60 scale-95'
         }`}
-        style={{ transitionDelay: animationPhase >= 2 ? '800ms' : '0ms' }}
+        style={{ transitionDelay: animationPhase >= 2 ? '200ms' : '0ms' }}
       >
         <Button 
           className="bg-gray-900 hover:bg-gray-800 text-white px-20 py-4 rounded-full text-[0.7rem] tracking-[0.4em] uppercase font-normal transition-all duration-300 hover:scale-105 hover:shadow-lg shadow-md"
