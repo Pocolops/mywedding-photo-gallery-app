@@ -53,8 +53,8 @@ const Index = () => {
               animationPhase === 0 
                 ? 'translate-y-[500px] opacity-70' 
                 : animationPhase === 1
-                ? 'translate-x-8 translate-y-16 opacity-100'
-                : 'translate-x-8 translate-y-16 opacity-100'
+                ? 'translate-x-12 translate-y-20 opacity-100'
+                : 'translate-x-12 translate-y-20 opacity-100'
             }`}
             style={{ 
               fontFamily: '"Giaza Senthil", Georgia, "Times New Roman", serif'
@@ -66,7 +66,7 @@ const Index = () => {
 
         {/* Names Text - positioned under the D and beside the S */}
         <div 
-          className={`absolute top-[68%] left-[38%] text-[0.8rem] tracking-[0.3em] text-gray-700 font-normal uppercase transition-all duration-[3000ms] ease-[cubic-bezier(0.25,0.46,0.45,0.94)] ${
+          className={`absolute top-[68%] left-[28%] text-[0.8rem] tracking-[0.3em] text-gray-700 font-normal uppercase transition-all duration-[3000ms] ease-[cubic-bezier(0.25,0.46,0.45,0.94)] ${
             animationPhase >= 1
               ? 'translate-x-0 opacity-100 blur-0' 
               : '-translate-x-12 opacity-0 blur-sm'
