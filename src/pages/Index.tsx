@@ -37,8 +37,8 @@ const Index = () => {
               animationPhase === 0 
                 ? '-translate-y-[500px] opacity-70' 
                 : animationPhase === 1
-                ? '-translate-x-8 -translate-y-2 opacity-100'
-                : '-translate-x-8 -translate-y-2 opacity-100'
+                ? '-translate-x-8 -translate-y-4 opacity-100'
+                : '-translate-x-8 -translate-y-4 opacity-100'
             }`}
             style={{ 
               fontFamily: 'Georgia, "Times New Roman", serif'
@@ -53,8 +53,8 @@ const Index = () => {
               animationPhase === 0 
                 ? 'translate-y-[500px] opacity-70' 
                 : animationPhase === 1
-                ? 'translate-x-8 translate-y-6 opacity-100'
-                : 'translate-x-8 translate-y-6 opacity-100'
+                ? 'translate-x-8 translate-y-12 opacity-100'
+                : 'translate-x-8 translate-y-12 opacity-100'
             }`}
             style={{ 
               fontFamily: 'Georgia, "Times New Roman", serif'
