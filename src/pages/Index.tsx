@@ -8,12 +8,12 @@ const Index = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Phase 0: Initial state (D at top, S at bottom, hidden text and button)
-    // Phase 1: Everything animates together (after 800ms)
+    // Phase 0: Initial state (D from far left, S from far right, hidden text and button)
+    // Phase 1: Everything animates together smoothly (after 1000ms)
     
     const timer1 = setTimeout(() => {
       setAnimationPhase(1);
-    }, 800);
+    }, 1000);
 
     return () => {
       clearTimeout(timer1);
@@ -33,10 +33,10 @@ const Index = () => {
         <div className="relative flex items-center justify-center">
           {/* D Letter */}
           <div 
-            className={`text-[18rem] font-bold text-gray-900 leading-none transition-all duration-[1800ms] ease-[cubic-bezier(0.25,0.46,0.45,0.94)] absolute z-10 ${
+            className={`text-[18rem] font-bold text-gray-900 leading-none transition-all duration-[3000ms] ease-[cubic-bezier(0.16,1,0.3,1)] absolute z-10 ${
               animationPhase === 0 
-                ? '-translate-y-[500px] opacity-60' 
-                : '-translate-x-12 -translate-y-4 opacity-100'
+                ? '-translate-x-[800px] -translate-y-[200px] opacity-0 scale-75' 
+                : '-translate-x-12 -translate-y-4 opacity-100 scale-100'
             }`}
             style={{ 
               fontFamily: '"Giaza Senthil", Georgia, "Times New Roman", serif'
@@ -47,10 +47,10 @@ const Index = () => {
           
           {/* S Letter */}
           <div 
-            className={`text-[18rem] font-bold text-gray-900 leading-none transition-all duration-[1800ms] ease-[cubic-bezier(0.25,0.46,0.45,0.94)] absolute z-0 ${
+            className={`text-[18rem] font-bold text-gray-900 leading-none transition-all duration-[3000ms] ease-[cubic-bezier(0.16,1,0.3,1)] absolute z-0 ${
               animationPhase === 0 
-                ? 'translate-y-[500px] opacity-60' 
-                : 'translate-x-16 translate-y-24 opacity-100'
+                ? 'translate-x-[800px] translate-y-[200px] opacity-0 scale-75' 
+                : 'translate-x-16 translate-y-24 opacity-100 scale-100'
             }`}
             style={{ 
               fontFamily: '"Giaza Senthil", Georgia, "Times New Roman", serif'
@@ -62,7 +62,7 @@ const Index = () => {
 
         {/* Names Text - animates simultaneously with letters */}
         <div 
-          className={`absolute top-[65%] -left-32 text-[0.9rem] tracking-[0.3em] text-gray-700 font-normal uppercase transition-all duration-[1800ms] ease-[cubic-bezier(0.25,0.46,0.45,0.94)] ${
+          className={`absolute top-[65%] -left-32 text-[0.9rem] tracking-[0.3em] text-gray-700 font-normal uppercase transition-all duration-[3000ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
             animationPhase >= 1
               ? '-translate-x-8 opacity-100 blur-0' 
               : '-translate-x-96 opacity-0 blur-sm'
@@ -79,10 +79,10 @@ const Index = () => {
 
       {/* Start Button - animates with everything else */}
       <div 
-        className={`pb-16 transform transition-all duration-[1800ms] ease-[cubic-bezier(0.25,0.46,0.45,0.94)] ${
+        className={`pb-16 transform transition-all duration-[3000ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
           animationPhase >= 1
             ? 'translate-y-0 opacity-100 scale-100' 
-            : 'translate-y-8 opacity-0 scale-95'
+            : 'translate-y-12 opacity-0 scale-90'
         }`}
       >
         <Button 
