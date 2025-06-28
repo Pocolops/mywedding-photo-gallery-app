@@ -8,21 +8,15 @@ const Index = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Phase 0: Initial state (D at top, S at bottom, hidden text)
-    // Phase 1: D and S animate to center and overlap, text appears simultaneously (after 800ms)
-    // Phase 2: Button appears (after 2000ms)
+    // Phase 0: Initial state (D at top, S at bottom, hidden text and button)
+    // Phase 1: Everything animates together (after 800ms)
     
     const timer1 = setTimeout(() => {
       setAnimationPhase(1);
     }, 800);
 
-    const timer2 = setTimeout(() => {
-      setAnimationPhase(2);
-    }, 2000);
-
     return () => {
       clearTimeout(timer1);
-      clearTimeout(timer2);
     };
   }, []);
 
@@ -39,7 +33,7 @@ const Index = () => {
         <div className="relative flex items-center justify-center">
           {/* D Letter */}
           <div 
-            className={`text-[18rem] font-bold text-gray-900 leading-none transition-all duration-[2000ms] ease-[cubic-bezier(0.23,1,0.32,1)] absolute z-10 ${
+            className={`text-[18rem] font-bold text-gray-900 leading-none transition-all duration-[1800ms] ease-[cubic-bezier(0.25,0.46,0.45,0.94)] absolute z-10 ${
               animationPhase === 0 
                 ? '-translate-y-[500px] opacity-60' 
                 : '-translate-x-12 -translate-y-4 opacity-100'
@@ -53,7 +47,7 @@ const Index = () => {
           
           {/* S Letter */}
           <div 
-            className={`text-[18rem] font-bold text-gray-900 leading-none transition-all duration-[2000ms] ease-[cubic-bezier(0.23,1,0.32,1)] absolute z-0 ${
+            className={`text-[18rem] font-bold text-gray-900 leading-none transition-all duration-[1800ms] ease-[cubic-bezier(0.25,0.46,0.45,0.94)] absolute z-0 ${
               animationPhase === 0 
                 ? 'translate-y-[500px] opacity-60' 
                 : 'translate-x-16 translate-y-24 opacity-100'
@@ -68,7 +62,7 @@ const Index = () => {
 
         {/* Names Text - animates simultaneously with letters */}
         <div 
-          className={`absolute top-[65%] -left-32 text-[0.9rem] tracking-[0.3em] text-gray-700 font-normal uppercase transition-all duration-[2000ms] ease-[cubic-bezier(0.23,1,0.32,1)] ${
+          className={`absolute top-[65%] -left-32 text-[0.9rem] tracking-[0.3em] text-gray-700 font-normal uppercase transition-all duration-[1800ms] ease-[cubic-bezier(0.25,0.46,0.45,0.94)] ${
             animationPhase >= 1
               ? '-translate-x-8 opacity-100 blur-0' 
               : '-translate-x-96 opacity-0 blur-sm'
@@ -83,10 +77,10 @@ const Index = () => {
         </div>
       </div>
 
-      {/* Start Button */}
+      {/* Start Button - animates with everything else */}
       <div 
-        className={`pb-16 transform transition-all duration-[1200ms] ease-[cubic-bezier(0.23,1,0.32,1)] ${
-          animationPhase >= 2
+        className={`pb-16 transform transition-all duration-[1800ms] ease-[cubic-bezier(0.25,0.46,0.45,0.94)] ${
+          animationPhase >= 1
             ? 'translate-y-0 opacity-100 scale-100' 
             : 'translate-y-8 opacity-0 scale-95'
         }`}
