@@ -29,7 +29,7 @@ const Index = () => {
       {/* Main Content Container */}
       <div className="flex flex-col items-center justify-center flex-1 relative">
         
-        {/* DS Letters Container - positioned closer together */}
+        {/* DS Letters Container */}
         <div className="relative flex items-center justify-center">
           {/* D Letter */}
           <div 
@@ -40,7 +40,7 @@ const Index = () => {
             }`}
             style={{ 
               fontFamily: 'Georgia, "Times New Roman", serif',
-              marginRight: '-0.1em' // Brings letters closer
+              marginRight: '-0.1em'
             }}
           >
             D
@@ -55,7 +55,7 @@ const Index = () => {
             }`}
             style={{ 
               fontFamily: 'Georgia, "Times New Roman", serif',
-              marginLeft: '-0.1em' // Brings letters closer
+              marginLeft: '-0.1em'
             }}
           >
             S
