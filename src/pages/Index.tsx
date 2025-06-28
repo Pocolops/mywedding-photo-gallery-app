@@ -68,7 +68,7 @@ const Index = () => {
         <div 
           className={`absolute top-[70%] left-[2%] text-[0.7rem] tracking-[0.3em] text-gray-700 font-normal uppercase transition-all duration-[3000ms] ease-[cubic-bezier(0.25,0.46,0.45,0.94)] ${
             animationPhase >= 2
-              ? 'translate-x-[20rem] opacity-100 blur-0' 
+              ? 'translate-x-[8rem] opacity-100 blur-0' 
               : '-translate-x-96 opacity-0 blur-sm'
           }`}
           style={{ 
