@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 const Menu = () => {
   return (
-    <div className="min-h-screen flex flex-col bg-gray-200 font-serif">
+    <div className="h-screen flex flex-col bg-gray-200 font-serif overflow-hidden">
       {/* Header with back button */}
       <div className="flex items-center p-4">
         <Link to="/" className="flex items-center text-gray-700 hover:text-gray-900">

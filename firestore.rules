@@ -1,0 +1,33 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Photos collection rules
+    match /photos/{photoId} {
+      // Allow anyone to read photos (public wedding gallery)
+      allow read: if true;
+      
+      // Allow anyone to create photos with proper data structure
+      allow create: if request.auth == null 
+        && isValidPhotoData(request.resource.data)
+        && resource == null;
+      
+      // Prevent updates and deletes for now (can be modified later)
+      allow update, delete: if false;
+    }
+    
+    // Helper function to validate photo data
+    function isValidPhotoData(data) {
+      return data.keys().hasAll(['url', 'thumbnailUrl', 'fileName', 'size', 'uploadedAt', 'photographer'])
+        && data.url is string
+        && data.thumbnailUrl is string  
+        && data.fileName is string
+        && data.size is number
+        && data.size > 0
+        && data.size < 50000000  // 50MB limit
+        && data.uploadedAt is timestamp
+        && data.photographer is string
+        && data.photographer.size() > 0
+        && data.photographer.size() < 100;
+    }
+  }
+} 
