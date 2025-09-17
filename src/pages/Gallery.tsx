@@ -292,7 +292,7 @@ const Gallery = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-gray-200 font-serif overflow-x-hidden max-w-full">
+    <div className="min-h-screen flex flex-col bg-limewash font-serif overflow-x-hidden max-w-full">
       {/* Header */}
       <div className="px-4 py-3 bg-gray-200 sticky top-0 z-40 backdrop-blur-sm border-b border-gray-300">
         <div className="flex items-center justify-between gap-3">

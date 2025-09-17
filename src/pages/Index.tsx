@@ -24,7 +24,7 @@ const Index = () => {
   };
 
   return (
-    <div className="h-[100svh] flex flex-col items-center justify-center bg-gray-200 relative overflow-hidden font-serif">
+    <div className="h-[100svh] flex flex-col items-center justify-center bg-limewash relative overflow-hidden font-serif">
       {/* Main Content Container - moved up for mobile */}
       <div className="flex flex-col items-center justify-center h-full w-full relative -translate-y-8 md:-translate-y-4">
         

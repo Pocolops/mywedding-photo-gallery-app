@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 const Menu = () => {
   return (
-    <div className="h-screen flex flex-col bg-gray-200 font-serif overflow-hidden">
+    <div className="h-[100svh] flex flex-col bg-limewash font-serif overflow-hidden">
       {/* Header with back button */}
       <div className="flex items-center p-4">
         <Link to="/" className="flex items-center text-gray-700 hover:text-gray-900">
@@ -17,7 +17,7 @@ const Menu = () => {
       </div>
 
       {/* Main Content */}
-      <div className="flex-1 flex flex-col items-center justify-center px-8 space-y-6">
+      <div className="flex-1 flex flex-col items-center justify-center px-8 space-y-6 overflow-hidden">
         {/* Upload Photos Button */}
         <Button 
           asChild

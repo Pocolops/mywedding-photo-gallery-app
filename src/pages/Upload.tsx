@@ -1,4 +1,6 @@
 import { useState } from 'react';
+// @ts-ignore - no types
+import heic2any from 'heic2any';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft, Upload as UploadIcon, CheckCircle, X, Loader2, Eye, Trash2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -21,6 +23,7 @@ type UploadedFile = {
 };
 
 const Upload = () => {
+  const NAME_MAX = 20;
   const [dragActive, setDragActive] = useState(false);
   const [selectedFiles, setSelectedFiles] = useState<SelectedFile[]>([]);
   const [uploadedFiles, setUploadedFiles] = useState<UploadedFile[]>([]);
@@ -38,21 +41,33 @@ const Upload = () => {
     }
   };
 
-  const processFiles = (files: FileList) => {
+  const convertIfNeeded = async (file: File): Promise<File> => {
+    // Convert HEIC/HEIF to JPEG for cross-device compatibility
+    const type = (file.type || '').toLowerCase();
+    const name = file.name.toLowerCase();
+    const isHeic = type.includes('heic') || type.includes('heif') || name.endsWith('.heic') || name.endsWith('.heif');
+    if (!isHeic) return file;
+    try {
+      const blob = await heic2any({ blob: file, toType: 'image/jpeg', quality: 0.92 });
+      return new File([blob as Blob], file.name.replace(/\.(heic|heif)$/i, '.jpg'), { type: 'image/jpeg' });
+    } catch (e) {
+      // Fall back to original if conversion fails
+      return file;
+    }
+  };
+
+  const processFiles = async (files: FileList) => {
     const newFiles: SelectedFile[] = [];
     
-    Array.from(files).forEach(file => {
-      if (file.type.startsWith('image/')) {
-        const id = Math.random().toString(36).substr(2, 9);
-        const preview = URL.createObjectURL(file);
-        
-        newFiles.push({
-          id,
-          file,
-          preview
-        });
-      }
-    });
+    for (const original of Array.from(files)) {
+      // Accept common images and HEIC/HEIF
+      const isImage = original.type.startsWith('image/') || /\.(heic|heif)$/i.test(original.name);
+      if (!isImage) continue;
+      const file = await convertIfNeeded(original);
+      const id = Math.random().toString(36).substr(2, 9);
+      const preview = URL.createObjectURL(file);
+      newFiles.push({ id, file, preview });
+    }
 
     if (newFiles.length > 0) {
       setSelectedFiles(prev => [...prev, ...newFiles]);
@@ -126,9 +141,9 @@ const Upload = () => {
     }
   };
 
-  const handleFileInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileInput = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
-      processFiles(e.target.files);
+      await processFiles(e.target.files);
     }
     // Reset input
     e.target.value = '';
@@ -155,10 +170,19 @@ const Upload = () => {
   };
 
   const confirmUpload = () => {
-    if (!photographerName.trim()) {
+    const name = photographerName.trim();
+    if (!name) {
       toast({
         title: "Name required",
         description: "Please enter your name before uploading.",
+        variant: "destructive",
+      });
+      return;
+    }
+    if (name.length > NAME_MAX) {
+      toast({
+        title: `Name too long`,
+        description: `Please keep your name under ${NAME_MAX} characters.`,
         variant: "destructive",
       });
       return;
@@ -176,7 +200,7 @@ const Upload = () => {
     
     // Start real upload for each file
     filesToUpload.forEach((file, index) => {
-      setTimeout(() => realUpload(file.id, file.file, photographerName), 500 * (index + 1));
+      setTimeout(() => realUpload(file.id, file.file, name), 500 * (index + 1));
     });
 
     // Clear selected files and hide confirmation
@@ -197,7 +221,7 @@ const Upload = () => {
   const uploadingCount = uploadedFiles.filter(f => f.uploading).length;
 
   return (
-    <div className="h-[100svh] flex flex-col bg-gray-200 font-serif overflow-hidden">
+    <div className="h-[100svh] flex flex-col bg-limewash font-serif overflow-hidden">
       {/* Header with back button */}
       <div className="flex items-center p-4 bg-gray-200 sticky top-0 z-40 backdrop-blur-sm">
         <Link to="/menu" className="flex items-center text-gray-700 hover:text-gray-900 transition-colors">
@@ -248,7 +272,7 @@ const Upload = () => {
             <input
               type="file"
               multiple
-              accept="image/*"
+              accept="image/*,.heic,.heif"
               onChange={handleFileInput}
               className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
             />
@@ -281,17 +305,19 @@ const Upload = () => {
                 {/* Photographer Name Input */}
                 <div className="mb-6">
                   <label htmlFor="photographer" className="block text-sm font-medium text-gray-700 mb-2">
-                    Your Name *
+                    Your Name * <span className="text-xs text-gray-500">(max {NAME_MAX} chars)</span>
                   </label>
                   <input
                     id="photographer"
                     type="text"
                     value={photographerName}
                     onChange={(e) => setPhotographerName(e.target.value)}
+                    maxLength={NAME_MAX}
                     placeholder="Enter your name"
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-transparent"
                     required
                   />
+                  <div className="text-xs text-gray-500 mt-1">{photographerName.length}/{NAME_MAX}</div>
                 </div>
 
                 {/* Selected Photos Grid */}

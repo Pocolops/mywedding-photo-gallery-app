@@ -2,6 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Limewash texture background that keeps the existing gray-200 palette */
+.bg-limewash {
+  /* Base tone matches Tailwind gray-200 (#e5e7eb) */
+  background-color: #e5e7eb;
+  /* Subtle layered texture: light washes and faint grain */
+  background-image:
+    radial-gradient(at 20% 20%, rgba(255,255,255,0.7) 0px, rgba(255,255,255,0) 400px),
+    radial-gradient(at 80% 10%, rgba(255,255,255,0.5) 0px, rgba(255,255,255,0) 500px),
+    radial-gradient(at 10% 75%, rgba(0,0,0,0.035) 0px, rgba(0,0,0,0) 500px),
+    radial-gradient(at 90% 85%, rgba(0,0,0,0.025) 0px, rgba(0,0,0,0) 600px),
+    repeating-linear-gradient(45deg, rgba(255,255,255,0.03) 0 2px, rgba(255,255,255,0) 2px 6px),
+    repeating-linear-gradient(-45deg, rgba(0,0,0,0.015) 0 1px, rgba(0,0,0,0) 1px 5px);
+  background-blend-mode: normal, normal, multiply, multiply, overlay, overlay;
+}
+
 /* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
 All colors MUST be HSL.
 */
